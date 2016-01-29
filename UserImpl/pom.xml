@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>galvin</groupId>
+    <artifactId>UserImpl</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <description>
+        A framework for user management, roles and permissions, and 
+        logon/logoff.
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>galvin</groupId>
+            <artifactId>UserApi</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>galvin</groupId>
+            <artifactId>Utils</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.galvin.deps</groupId>
+            <artifactId>Logging</artifactId>
+            <version>1.0</version>
+            <type>pom</type>
+        </dependency>
+            
+        <dependency>
+            <groupId>com.galvin.deps</groupId>
+            <artifactId>ApacheCommons</artifactId>
+            <version>1.0</version>
+            <type>pom</type>
+        </dependency>
+        
+        <!-- Database dependencies; these are marked as provided, to avoid
+        bringing along a bunch of unused database APIs. -->
+        
+        <dependency>
+            <groupId>com.galvin.deps</groupId>
+            <artifactId>Sqlite</artifactId>
+            <version>1.0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.galvin.mongodb</groupId>
+            <artifactId>MongoUtils</artifactId>
+            <version>1.0</version>
+            <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!--test-->
+        
+        <dependency>
+            <groupId>com.galvin.deps</groupId>
+            <artifactId>LoggingSimple</artifactId>
+            <version>1.0</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+      
+        <dependency>
+            <groupId>com.galvin.deps</groupId>
+            <artifactId>JUnit</artifactId>
+            <version>1.0</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
