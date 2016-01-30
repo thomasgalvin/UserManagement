@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>galvin</groupId>
+    <parent>
+        <groupId>galvin</groupId>
+        <artifactId>Users</artifactId>
+        <version>1.0.0</version>
+    </parent>
     <artifactId>UserApi</artifactId>
-    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <description>
@@ -15,9 +17,23 @@
     <dependencies>
         <dependency>
             <groupId>com.galvin.deps</groupId>
+            <artifactId>Guava</artifactId>
+            <version>1.0</version>
+            <type>pom</type>
+        </dependency>
+            
+        <dependency>
+            <groupId>com.galvin.deps</groupId>
             <artifactId>Lombok</artifactId>
             <version>1.0</version>
             <type>pom</type>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.galvin.mongodb</groupId>
+            <artifactId>MongoUtils</artifactId>
+            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
