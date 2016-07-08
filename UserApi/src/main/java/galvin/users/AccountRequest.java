@@ -8,7 +8,7 @@ import lombok.ToString;
  * This class extends the User class to contain an unencrypted
  * password and password confirmation. 
  * 
- * These are not meant to be stored! This class is only intended at a 
+ * These are not meant to be stored! This class is only intended as a 
  * data transfer object between the client and the back end. When the
  * account request is stored, the password and confirmation should
  * be compared. If they are not equal, a PasswordMismatchException should
