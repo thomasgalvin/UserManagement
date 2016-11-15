@@ -11,6 +11,9 @@ public class NoOpUserDataStore implements UserDataStore
     }
     
     @Override
+    public void changePassword( String userUuid, String password ) throws PersistenceException{}
+    
+    @Override
     public boolean exists( String uuid ) throws PersistenceException{
         return false;
     }

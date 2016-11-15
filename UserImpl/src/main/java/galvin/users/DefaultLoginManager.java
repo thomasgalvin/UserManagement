@@ -142,6 +142,10 @@ public class DefaultLoginManager implements LoginManager
     
     @Override
     public synchronized String encrypt( String password ) {
+        return encryptPassword(password);
+    }
+    
+    public static synchronized String encryptPassword( String password ){
         String hashed = BCrypt.hashpw( password, BCrypt.gensalt() );
         return hashed;
     }

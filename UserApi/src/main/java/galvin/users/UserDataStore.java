@@ -18,6 +18,14 @@ public interface UserDataStore
     public String store( User user ) throws PersistenceException;
     
     /**
+     * Changes a user's password
+     * @param userUuid the user's uuid
+     * @param password the new password
+     * @throws PersistenceException if an error occurs. 
+     */
+    public void changePassword( String userUuid, String password ) throws PersistenceException;
+    
+    /**
      * Returns true if a user with the given UUID exists.
      * @param uuid the uuid to search for
      * @return true if a user matching the given criteria exists, false otherwise

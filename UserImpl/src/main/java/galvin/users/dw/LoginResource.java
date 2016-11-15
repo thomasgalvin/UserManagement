@@ -101,6 +101,7 @@ public class LoginResource {
             throw new LoginException();
         }
         catch( Throwable t ) {
+            logger.error( "Error", t );
             throw new WebApplicationException( t );
         }
     }
@@ -131,6 +132,7 @@ public class LoginResource {
             loginManager.logout( token );
         }
         catch( Throwable t ) {
+            logger.error( "Error", t );
             throw new WebApplicationException( t );
         }
     }
@@ -159,6 +161,7 @@ public class LoginResource {
             return result;
         }
         catch( Throwable t ) {
+            logger.error( "Error", t );
             throw new WebApplicationException( t );
         }
     }

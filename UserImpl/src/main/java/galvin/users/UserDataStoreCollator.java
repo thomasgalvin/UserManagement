@@ -35,6 +35,13 @@ public class UserDataStoreCollator implements UserDataStore
     }
     
     @Override
+    public void changePassword( String userUuid, String password ) throws PersistenceException{
+        for( UserDataStore dataStore : dataStores ){
+            dataStore.changePassword(userUuid, password);
+        }
+    }
+    
+    @Override
     public boolean exists( String uuid ) throws PersistenceException{
         boolean result = false;
         

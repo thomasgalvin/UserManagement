@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +38,9 @@ public class SqliteUserDataStore implements UserDataStore
         "insert into users"
       + "(       uuid, name, sortByName, displayName, title, enabled, credential, loginName, passwordHash )"
       + "values( ?,    ?,    ?,          ?,           ?,     ?,       ?,          ?,         ? );";
+    
+    private static final String UPDATE_PASSWORD = 
+        "update users set passwordHash = ? where uuid = ?";
     
     private static final String RETRIEVE_USER = 
         "select uuid as uuid, "
@@ -160,6 +164,7 @@ public class SqliteUserDataStore implements UserDataStore
      * 
      * @param database the location of the database file
      * @param rolesProvider the role provider
+     * @param loginManager the login manager
      * 
      * @throws PersistenceException if we are unable to connect to 
      * or create the database.
@@ -243,6 +248,33 @@ public class SqliteUserDataStore implements UserDataStore
         }
 
         return user.getUuid();
+    }
+    
+    @Override
+    public void changePassword( String userUuid, String password ) throws PersistenceException{
+        if( isBlank( userUuid ) || isBlank( password ) ) {
+            throw new NullPointerException( "User uuid and password cannot be empty" );
+        }
+
+        User user = retrieve( userUuid );
+        if( user == null ) {
+            throw new PersistenceException( "No user with UUID " + userUuid + " exists" );
+        }
+        
+        String hash = DefaultLoginManager.encryptPassword(password);
+        user.setPasswordHash(password);
+        
+        try ( Connection connection = DriverManager.getConnection( connectionUrl ) ) {
+            PreparedStatement statement = connection.prepareStatement( UPDATE_PASSWORD );
+            statement.setString(1, hash);
+            statement.setString(2, userUuid);
+            statement.executeUpdate();
+        }
+        catch(Throwable t ){
+            logger.error( "Error", t );
+            throw new PersistenceException(t);
+        }
+        
     }
     
     private void create( User user ) throws PersistenceException {

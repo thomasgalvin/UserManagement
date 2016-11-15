@@ -153,7 +153,6 @@ public class SqliteUserDataStoreTest {
         user.setPasswordHash( originalPasswordHash );
         Assert.assertEquals( "Loaded, updated user did not match original", user, loaded );
         
-
         ////////////////////////////////////////////////////////////////////////
         
         
@@ -270,6 +269,15 @@ public class SqliteUserDataStoreTest {
         catch( LoginException ex ){
             //this is what we wanted
         }
+        
+        ////////////////////////////////////////////////////////////////////////
+
+        
+        password = "67890";
+        dataStore.changePassword(uuid, password);
+        user = dataStore.retrieve(uuid);
+        token = loginManager.login( user.getLoginName(), password );
+        Assert.assertNotNull( "Change password failed", token );
         
         
         ////////////////////////////////////////////////////////////////////////
