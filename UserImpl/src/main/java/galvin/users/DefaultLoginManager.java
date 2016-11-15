@@ -134,6 +134,12 @@ public class DefaultLoginManager implements LoginManager
         }
     }
     
+    public void logout( String token ) throws PersistenceException{
+        if( token != null ){
+            tokens.remove( token );
+        }
+    }
+    
     @Override
     public synchronized String encrypt( String password ) {
         String hashed = BCrypt.hashpw( password, BCrypt.gensalt() );

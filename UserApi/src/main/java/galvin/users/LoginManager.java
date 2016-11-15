@@ -48,6 +48,13 @@ public interface LoginManager
     public void demandPermission( String token, String permission ) throws PersistenceException, LoginException, PermissionsException;
     
     /**
+     * Logs a token out of the system.
+     * @param token the login token
+     * @throws PersistenceException if an error occurred contacting the database
+     */
+    public void logout( String token ) throws PersistenceException;
+    
+    /**
      * Hashes the password in a cryptographically secure manner.
      * @param password the unencrypted password.
      * @return the encrypted password hash.
